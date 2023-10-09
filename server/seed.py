@@ -45,57 +45,27 @@ with app.app_context():
     museum9 = Museum(name='Museum 9',location= 'Location 9')
     museum10 = Museum(name='Museum 10',location= 'Location 10')
 
-    review1 = Review(content=faker.paragraph(), artist=artist1)
-    review2 = Review(content=faker.paragraph(), artist=artist2)
-    review3 = Review(content=faker.paragraph(), artist=artist3)
-    review4 = Review(content=faker.paragraph(), artist=artist4)
-    review5 = Review(content=faker.paragraph(), artist=artist5)
-    review6 = Review(content=faker.paragraph(), artist=artist6)
-    review7 = Review(content=faker.paragraph(), artist=artist7)
-    review8 = Review(content=faker.paragraph(), artist=artist8)
-    review9 = Review(content=faker.paragraph(), artist=artist9)
-    review10 = Review(content=faker.paragraph(), artist=artist10)
-
-    db.session.add(artist1)
-    db.session.add(artist2)
-    db.session.add(artist3)
-    db.session.add(artist4)
-    db.session.add(artist5)
-    db.session.add(artist6)
-    db.session.add(artist7)
-    db.session.add(artist8)
-    db.session.add(artist9)
-    db.session.add(artist10)
-
-    db.session.add(museum1)
-    db.session.add(museum2)
-    db.session.add(museum3)
-    db.session.add(museum4)
-    db.session.add(museum5)
-    db.session.add(museum6)
-    db.session.add(museum7)
-    db.session.add(museum8)
-    db.session.add(museum9)
-    db.session.add(museum10)
-
-    db.session.add(review1)
-    db.session.add(review2)
-    db.session.add(review3)
-    db.session.add(review4)
-    db.session.add(review5)
-    db.session.add(review6)
-    db.session.add(review7)
-    db.session.add(review8)
-    db.session.add(review9)
-    db.session.add(review10)
+    db.session.add_all([artist1, artist2, artist3, artist4, artist5, artist6, artist7, artist8, artist9, artist10])
+    db.session.add_all([museum1, museum2, museum3, museum4, museum5, museum6, museum7, museum8, museum9, museum10])
+    
+    
+    
+    review1 = Review(content=faker.paragraph(), artist_id=artist1.id)
+    review2 = Review(content=faker.paragraph(), artist_id=artist2.id)
+    review3 = Review(content=faker.paragraph(), artist_id=artist3.id)
+    review4 = Review(content=faker.paragraph(), artist_id=artist4.id)
+    review5 = Review(content=faker.paragraph(), artist_id=artist5.id)
+    review6 = Review(content=faker.paragraph(), artist_id=artist6.id)
+    review7 = Review(content=faker.paragraph(), artist_id=artist7.id)
+    review8 = Review(content=faker.paragraph(), artist_id=artist8.id)
+    review9 = Review(content=faker.paragraph(), artist_id=artist9.id)
+    review10 = Review(content=faker.paragraph(), artist_id=artist10.id)
 
 
-
-
+    db.session.add_all([review1, review2, review3, review4, review5, review6, review7, review8, review9, review10])
 
 
     db.session.commit()
-
 
 
     print('Database seed successful')
