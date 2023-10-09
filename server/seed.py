@@ -62,8 +62,16 @@ with app.app_context():
     if user1:
         review1 = Review(content=faker.paragraph())
         user1.reviews.append(review1)
+        try:
+            db.session.commit()
+            print('Database seed succesful')
+        except Exception as e:
+            db.session.rollback()
+            print(f'Database seed failed with error: {str(e)}')
+        else:
+            print('Artists not found in the database')
     else:
-        print('USer not found in the database')
+        print('User not found in the database')
 
     # user1 = User.query.filter_by(username='user1').first()
     # user2 = User.query.filter_by(username= 'user2').first()
