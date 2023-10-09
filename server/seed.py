@@ -29,8 +29,8 @@ with app.app_context():
     db.session.add_all(artists)
     db.session.commit()
 
-    # for artist in artists:
-    #     print(f'Artist: {artist.name}, ID: {artist.id}')
+    for artist in artists:
+        print(f'Artist: {artist.name}, ID: {artist.id}')
 
     
 
@@ -50,8 +50,8 @@ with app.app_context():
         for artist in artists
     ]
 
-    # for review in reviews:
-    #     print(f'Review Artist ID: {review.artist_id}')
+    for review in reviews:
+        print(f'Review Artist ID: {review.artist_id}')
 
 
     db.session.add_all(reviews)
@@ -73,13 +73,13 @@ with app.app_context():
     else:
         print('User not found in the database')
 
-    # user1 = User.query.filter_by(username='user1').first()
-    # user2 = User.query.filter_by(username= 'user2').first()
-    # review1 = Review.query.filter_by(id=1).first()
-    # review2 =Review.query.filter_by(id=2).first()
+    user1 = User.query.filter_by(username='user1').first()
+    user2 = User.query.filter_by(username= 'user2').first()
+    review1 = Review.query.filter_by(id=1).first()
+    review2 =Review.query.filter_by(id=2).first()
 
-    # user1.reviews.append(review1)
-    # user2.reviews.append(review2)
+    user1.reviews.append(review1)
+    user2.reviews.append(review2)
 
 
     try:
