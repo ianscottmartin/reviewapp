@@ -56,14 +56,23 @@ with app.app_context():
 
     db.session.add_all(reviews)
 
-    user1 = User.query.filter_by(username='user1').first()
-    user2 = User.query.filter_by(username= 'user2').first()
-    review1 = Review.query.filter_by(id=1).first()
-    review2 =Review.query.filter_by(id=2).first()
+    user_id_to_fetch = 1
+    user1 = User.query.get(user_id_to_fetch)
 
-    user1.reviews.append(review1)
-    user2.reviews.append(review2)
-    
+    if user1:
+        review1 = Review(content=faker.paragraph())
+        user1.reviews.append(review1)
+    else:
+        print('USer not found in the database')
+
+    # user1 = User.query.filter_by(username='user1').first()
+    # user2 = User.query.filter_by(username= 'user2').first()
+    # review1 = Review.query.filter_by(id=1).first()
+    # review2 =Review.query.filter_by(id=2).first()
+
+    # user1.reviews.append(review1)
+    # user2.reviews.append(review2)
+
 
     try:
 
