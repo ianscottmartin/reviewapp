@@ -39,7 +39,7 @@ with app.app_context():
     
     
     reviews = [
-        Review(content=faker.paragraph(), artist=artists[i])
+        Review(content=faker.paragraph(), artist=artists[i].id)
         for i in range(10)
     ]
 
