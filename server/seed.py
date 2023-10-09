@@ -15,9 +15,7 @@ with app.app_context():
     for _ in range(20):
         username = faker.unique.user_name()
         password = faker.password()
-        user = User(
-            username=username
-        )
+        user = User(username=username)
         
         user.password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
          # We are calling the password_hash setter method here
@@ -27,13 +25,22 @@ with app.app_context():
         Artist(name=f'Artist {i}', work=f'Work {i} by Artist {i}', description=f'Description {i} by Artist {i}')
         for i in range(1, 11)
     ]
+
+    db.session.add_all(artists)
+    db.session.commit()
+
+    # for artist in artists:
+    #     print(f'Artist: {artist.name}, ID: {artist.id}')
+
     
+
+
     museums =[
         Museum(name=f'Museum {i}',location= f'Location {i}')
         for i in range(1, 11)
     ]
 
-    db.session.add_all(artists)
+    
     db.session.add_all(museums)
     
     
@@ -42,6 +49,9 @@ with app.app_context():
         Review(content=faker.paragraph(), artist_id=artist.id)
         for artist in artists
     ]
+
+    # for review in reviews:
+    #     print(f'Review Artist ID: {review.artist_id}')
 
 
     db.session.add_all(reviews)
