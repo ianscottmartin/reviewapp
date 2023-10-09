@@ -46,8 +46,13 @@ with app.app_context():
 
     db.session.add_all(reviews)
 
+    try:
 
-    db.session.commit()
+        db.session.commit()
+        print('Database seed successful')
+    except Exception as e:
+
+        db.session.rollback()
+        print(f'Database seed failed with error: {str(e)}')
 
 
-    print('Database seed successful')
