@@ -6,7 +6,7 @@ from config import db, bcrypt
 
 user_review_association = db.Table(
    'user_review_association',
-   db.Column('user_id',db.Integer, db.ForeignKey('users_id'), primary_key=True)
+   db.Column('user_id',db.Integer, db.ForeignKey('users_id'), primary_key=True),
    db.Column('review_id', db.Integer,db.ForeignKey('reviews.id', primary_key=True))
 )
 
