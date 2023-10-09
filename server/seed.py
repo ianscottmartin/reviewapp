@@ -12,7 +12,8 @@ with app.app_context():
     Review.query.delete()
 #use faker for content and users
     for _ in range(20):
-        username = faker.profile(fields=["username"])["username"]
+        username = faker.unique.user_name()
+        password = faker.password()
         user = User(
             username=username
         )
