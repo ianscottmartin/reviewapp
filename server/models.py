@@ -4,12 +4,23 @@ from sqlalchemy_serializer import SerializerMixin
 
 from config import db, bcrypt
 
+user_review_associtation = db.Table(
+   'user_review_association',
+    db.Column('user_id', db.Integer, db.ForeignKey('users_id'), primary_key=True)
+    db.Column('review_id', db.Integer, db.ForeignKey('reviews_id'), primary_key=True)
+)
+
+
+
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True)
     _password_hash = db.Column(db.String)
+
+    reviews = db.relationship('Review', secondary=user_review_association, backref='users')
+
 
     @hybrid_property # Restrict access to the password hash.
     def password_hash(self):
@@ -25,3 +36,24 @@ class User(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f"User {self.username}, ID: {self.id}"
+
+class Artist(db.Model):
+    __tablename__ = 'artists'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(55), nullable=False)
+    work = db.Column(db.String(255), nullable=False)
+    description =db.Column(db.String(255), nullable=False)
+
+class Museum(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(55), nullable=False)
+    location= db.Column(db.String(55), nullable=False)
+
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    artist_id = db.Column(db.Integer, db.ForiegnKey('artists.id'), nullable=False)
+
+
+    users= db.relationship('User', secondary=user_review_association, backref='reviews')
