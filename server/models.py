@@ -4,10 +4,10 @@ from sqlalchemy_serializer import SerializerMixin
 
 from config import db, bcrypt
 
-user_review_associtation = db.Table(
+user_review_association = db.Table(
    'user_review_association',
-    db.Column('user_id', db.Integer, db.ForeignKey('users_id'), primary_key=True)
-    db.Column('review_id', db.Integer, db.ForeignKey('reviews_id'), primary_key=True)
+   db.Column('user_id',db.Integer, db.ForeignKey('users_id'), primary_key=True)
+   db.Column('review_id', db.Integer,db.ForeignKey('reviews.id', primary_key=True))
 )
 
 
@@ -19,7 +19,7 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String, unique=True)
     _password_hash = db.Column(db.String)
 
-    reviews = db.relationship('Review', secondary=user_review_association, backref='users')
+    reviews = db.relationship('Review', secondary=user_review_association, back_populates='users')
 
 
     @hybrid_property # Restrict access to the password hash.
@@ -56,4 +56,4 @@ class Review(db.Model):
     artist_id = db.Column(db.Integer, db.ForiegnKey('artists.id'), nullable=False)
 
 
-    users= db.relationship('User', secondary=user_review_association, backref='reviews')
+    users= db.relationship('User', secondary=user_review_association, back_populates='reviews')
