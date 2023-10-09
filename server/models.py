@@ -32,7 +32,13 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password): # Check if the provided password matches the one stored in the db
         return bcrypt.check_password_hash(self._password_hash, password)
     
-    reviews = db.relationship('Review', secondary=user_review_association, back_populates='users')
+    reviews = db.relationship(
+        'Review',
+        secondary=user_review_association,
+        primaryjoin=(id == user_review_association.c.user_id),
+        secondaryjoin=(id == user_review_association.c.review_id),
+        back_populates='users'
+        )
 
     def __repr__(self):
         return f"User {self.username}, ID: {self.id}"
@@ -46,14 +52,24 @@ class Artist(db.Model):
     description =db.Column(db.String(255), nullable=False)
 
 class Museum(db.Model):
+    __tablename__ = 'museums'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(55), nullable=False)
     location= db.Column(db.String(55), nullable=False)
 
 class Review(db.Model):
+    __tablename__ = 'reviews'
+
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
     artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'), nullable=False)
 
 
-    users= db.relationship('User', secondary=user_review_association, back_populates='reviews')
+    users= db.relationship(
+        'User',
+        secondary=user_review_association,
+        primaryjoin=(id == user_review_association.c.review_id),
+        secondaryjoin=(id == user_review_association.c.user_id),
+        back_populates='reviews'
+        )
