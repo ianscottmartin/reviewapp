@@ -19,8 +19,6 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String, unique=True)
     _password_hash = db.Column(db.String)
 
-    reviews = db.relationship('Review', secondary=user_review_association, back_populates='users')
-
 
     @hybrid_property # Restrict access to the password hash.
     def password_hash(self):
@@ -33,6 +31,8 @@ class User(db.Model, SerializerMixin):
 
     def authenticate(self, password): # Check if the provided password matches the one stored in the db
         return bcrypt.check_password_hash(self._password_hash, password)
+    
+    reviews = db.relationship('Review', secondary=user_review_association, back_populates='users')
 
     def __repr__(self):
         return f"User {self.username}, ID: {self.id}"
@@ -53,7 +53,7 @@ class Museum(db.Model):
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
-    artist_id = db.Column(db.Integer, db.ForiegnKey('artists.id'), nullable=False)
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'), nullable=False)
 
 
     users= db.relationship('User', secondary=user_review_association, back_populates='reviews')
