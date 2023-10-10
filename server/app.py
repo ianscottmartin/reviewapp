@@ -10,11 +10,11 @@ def root():
 	return "<h1>Hello from root!</h1>"
 
 # RESTful route syntax
-class Users(Resource):
-	def get(self):
-		users = [user.to_dict() for user in User.query.all()] # Serialize your users - the password hashes should not be sent to the client
-		return users, 200
-api.add_resource(Users, '/users')
+# class Users(Resource):
+# 	def get(self):
+# 		users = [user.to_dict() for user in User.query.all()] # Serialize your users - the password hashes should not be sent to the client
+# 		return users, 200
+# api.add_resource(Users, '/users')
 
 # All routes here!
 # route for users
@@ -23,7 +23,7 @@ class UserResource(Resource):
     def get(self):
         users = User.query.all()
         user_list = [{"id": user.id, "username": user.username} for user in users]
-        return jsonify(user_list), 200
+        return (user_list), 200
     
     def post(self):
         parser = reqparse.RequestParser()
@@ -87,7 +87,7 @@ class ReviewResource(Resource):
     def get(self):
         reviews = Review.query.all()
         review_list = [{"id": review.id, "content": review.content} for review in reviews]
-        return jsonify(review_list), 200
+        return (review_list), 200
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -150,24 +150,24 @@ class ArtistResource(Resource):
     def get(self):
         artists = Artist.query.all()
         artist_list = [{"id": artist.id, "name": artist.name} for artist in artists]
-        return jsonify(artist_list), 200
+        return (artist_list), 200
 
 class MuseumResource(Resource):
     def get(self):
         museums = Museum.query.all()
         museum_list = [{"id": museum.id, "name": museum.name} for museum in museums]
-        return jsonify(museum_list), 200 
+        return (museum_list), 200 
 
 class UserReviewResource(Resource):
     def get(self, user_id):
         user = User.query.get(user_id)
 
         if user is None:
-            return jsonify({"message": "user not found"}), 404
+            return ({"message": "user not found"}), 404
         
         reviews = user.reviews
         review_list = [{"id": review.id, "content": review.content} for review in reviews]
-        return jsonify(review_list), 200
+        return (review_list), 200
     
     #add routes to the API
 
