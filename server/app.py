@@ -166,8 +166,18 @@ api.add_resource(ArtistResource, '/api/artists')
 api.add_resource(MuseumResource, '/api/museums')
 api.add_resource(UserReviewResource, '/api/user_reviews/<int:user_id>')
 
+@app.route("/", methods=["GET"])
+def root():
+	return "<h1>Hello from root!</h1>"
+
+# RESTful route syntax
+class Users(Resource):
+	def get(self):
+		users = [user.to_dict() for user in User.query.all()] # Serialize your users - the password hashes should not be sent to the client
+		return users, 200
+api.add_resource(Users, '/users')
 
 
 
 if __name__ == '__main__':
-    app.run(port=4000, debug=True)
+    app.run(port=5000, debug=True)
