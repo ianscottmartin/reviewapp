@@ -1,6 +1,10 @@
 
 import './App.css';
-import HomePage from './components/Home';
+import Home from './components/Home';
+import Artists from './components/Artists';
+import Museums from './components/Museums';
+import Reviews from './components/Reviews';
+import Users from './components/User';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -16,8 +20,9 @@ function App() {
       
       
       </Switch>
-      
+     
     </div>
+    </Router>
   );
 }
 
