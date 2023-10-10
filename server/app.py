@@ -160,11 +160,11 @@ class UserReviewResource(Resource):
     
     #add routes to the API
 
-api.add.resource(UserResource, '/api/users')
-api.add.resource(ReviewResource, '/api/reviews') 
-api.add.resource(ArtistResource, '/api/artists')
-api.add.resource(MuseumResource, '/api/museums')
-api.add.resource(UserReviewResource, '/api/user_reviews/<int:user_id>')
+api.add_resource(UserResource, '/api/users')
+api.add_resource(ReviewResource, '/api/reviews') 
+api.add_resource(ArtistResource, '/api/artists')
+api.add_resource(MuseumResource, '/api/museums')
+api.add_resource(UserReviewResource, '/api/user_reviews/<int:user_id>')
 
 
 
