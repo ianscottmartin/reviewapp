@@ -1,24 +1,29 @@
 import React from "react";
-import './HomePage.css';
-import 'client/src/css/home/Home.css';
+import './Home.css';
+
 
 function Home() {
     return(
-    <div className="home">
-        <header className="navbar">
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/users">Users</a></li>
-                <li><a href="/artists">Artists</a></li>
-                <li><a href="/museums">Museums</a></li>
-                <li><a href="/reviews">Reviews</a></li>
-            </ul>
-        </nav>
-        </header>
-        <div className="art-images"></div>
-
-    </div>
+        <div className="home">
+            <header className="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/users">Users</a></li>
+                        <li><a href="/artists">Artists</a></li>
+                        <li><a href="/museums">Museums</a></li>
+                        <li><a href="/reviews">Reviews</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div className= "home-background">
+                <div className="art-images">
+                    <img src="image1.jpg" alt="Artwork 1"/>
+                    <img src="image2.jpg" alt="Artwork 2"/>
+                    <img src="image3.jpg" alt="Artwork 3"/>
+                </div>
+            </div>
+        </div>
     );
 }
 
