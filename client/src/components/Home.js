@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../css/home/Home.css';
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
