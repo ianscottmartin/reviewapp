@@ -8,4 +8,4 @@ function Museums(){
     );
 }
 
-export default Museums();
+export default Museums;

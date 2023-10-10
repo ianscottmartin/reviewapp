@@ -16,7 +16,7 @@ function SignInForm() {
             <input type ="email"
             placeholder="Enter email"
             value={email}
-            onChange={(e) => setPassword(e.target.value)} />
+            onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>Password:
             <input

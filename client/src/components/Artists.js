@@ -20,7 +20,7 @@ function Artist() {
         <div> 
             <h2>Artists</h2>
             <ul>
-                {artists.map((artist) => (
+                 {artists.map((artist) => (
                     <li key={artist.id}>{artist.name}</li>
                 ))}
             </ul>
@@ -28,4 +28,4 @@ function Artist() {
     );
 }
 
-export default Artist();
+export default Artist;

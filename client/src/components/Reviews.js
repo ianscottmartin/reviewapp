@@ -1,6 +1,6 @@
 import React from "react";
 
-function Review(){
+function Reviews(){
     return (
         <div>
         <h2>Reviews</h2>
@@ -8,4 +8,4 @@ function Review(){
     );
 }
 
-export default Review();
+export default Reviews;
