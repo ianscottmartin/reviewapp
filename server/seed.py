@@ -1,5 +1,5 @@
 from faker import Faker
-from models import User, Artist, Museum, Review
+from models import User, Artist, Museum, Review, user_review_association
 from config import db, app, bcrypt
 
 faker = Faker()
@@ -56,7 +56,12 @@ with app.app_context():
 
     db.session.add_all(reviews)
 
-   
+    user_id_to_associate = 1
+    review_id_to_associate =1
+
+    new_association = user_review_association.insert().values(user_id=user_id_to_associate, review_id=review_id_to_associate)
+    db.session.execute(new_association)
+    db.session.commit()
    
     try:
         db.session.commit()
