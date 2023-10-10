@@ -29,7 +29,7 @@ function Home() {
                 <nav>
                     <ul>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/users">Users</Link></li>
+                        <li><Link to="/users">User</Link></li>
                         <li><Link to="/artists">Artists</Link></li>
                         <li><Link to="/museums">Museums</Link></li>
                         <li><Link to="/reviews">Reviews</Link></li>

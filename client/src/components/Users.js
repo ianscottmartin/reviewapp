@@ -1,6 +1,6 @@
 import React from "react";
 
-function User(){
+function Users(){
     return (
         <div> 
         <h2>Users</h2>
@@ -8,4 +8,4 @@ function User(){
     );
 }
 
-export default User;
+export default Users;
