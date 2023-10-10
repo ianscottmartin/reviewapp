@@ -17,7 +17,7 @@ class UserResource(Resource):
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument("username", type=str, required=True)
-        parser.add_arguement("password", type=str, required=True)
+        parser.add_argument("password", type=str, required=True)
         args = parser.parse_args()
 
         user = User(username=args["username"])
@@ -81,7 +81,7 @@ class ReviewResource(Resource):
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument("content", type=str, required=True)
-        parser.add_arguement("artist_id", type=str, required=True)
+        parser.add_argument("artist_id", type=str, required=True)
         args = parser.parse_args()
 
         review = Review(content=args["content"], artist_id=args["artist_id"])
