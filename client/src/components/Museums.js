@@ -1,6 +1,6 @@
 import React from "react";
 
-function Museum(){
+function Museums(){
     return (
         <div> 
         <h2>Museums</h2>

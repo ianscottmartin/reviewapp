@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import '../css/home/Home.css';
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
+import Artists from "./Artists";
+import Museums from "./Museums";
+import Reviews from "./Reviews";
+import User from "./User";
+
+
+
 
 function Home() {
     const [signInData, setSignInData]= useState(null);
