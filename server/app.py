@@ -5,22 +5,23 @@ from flask_restful import Resource, reqparse
 from config import app, db, api , bcrypt # This line will run the config.py file and initialize our app
 from models import User, Review, Artist, Museum, user_review_association
 
-# @app.route("/", methods=["GET"])
-# def root():
-# 	return "<h1>Hello from root!</h1>"
+@app.route("/", methods=["GET"])
+def root():
+	return "<h1>Hello from root!</h1>"
 
-# # RESTful route syntax
-# class Users(Resource):
-# 	def get(self):
-# 		users = [user.to_dict() for user in User.query.all()] # Serialize your users - the password hashes should not be sent to the client
-# 		return users, 200
-# api.add_resource(Users, '/users')
+# RESTful route syntax
+class Users(Resource):
+	def get(self):
+		users = [user.to_dict() for user in User.query.all()] # Serialize your users - the password hashes should not be sent to the client
+		return users, 200
+api.add_resource(Users, '/users')
 
 # All routes here!
-#route for users
+# route for users
 class UserResource(Resource):
+    
     def get(self):
-        users = [user.to_dict() for user in User.query.all()]
+        users = User.query.all()
         user_list = [{"id": user.id, "username": user.username} for user in users]
         return jsonify(user_list), 200
     
