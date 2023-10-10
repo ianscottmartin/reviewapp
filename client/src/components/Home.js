@@ -1,5 +1,7 @@
 import React from "react";
-// import './css/home/Home.css';
+import '../css/home/Home.css';
+import SignInForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
 
 function Home() {
     return(
