@@ -7,7 +7,7 @@ from models import User, Review, Artist, Museum, user_review_association
 
 @app.route("/", methods=["GET"])
 def root():
-	return "<h1>Hello from root!</h1>"
+	return "<h1>The Reflex!</h1>"
 
 # RESTful route syntax
 # class Users(Resource):
