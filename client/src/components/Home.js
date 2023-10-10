@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import '../css/home/Home.css';
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 
 function Home() {
+    const [signInData, setSignInData]= useState(null);
+    const [signUpData, setSignUpData]= useState(null);
+
+    // callback function
+    const handleSignInSubmit = (data) => {
+        setSignInData(data);
+
+    };
+
+    const handleSignUpSubmit =(data) => {
+        setSignUpData(data);
+    };
+
     return(
         <div className="home">
             <header className="navbar">
@@ -24,6 +37,14 @@ function Home() {
                     <img src="image3.jpg" alt="Artwork 3"/>
                 </div>
             </div>
+            <div className="auth-section">
+                <SignInForm onSubmit={handleSignInSubmit} />
+
+                <SignUpForm onSubmit={handleSignUpSubmit} />
+            </div>
+            {signInData && <div>Sign-In Data: {JSON.stringify(signInData)}</div>}
+            {signUpData && <div>Sign-Up Data: {JSON.stringify(signUpData)}</div>}
+            
         </div>
     );
 }
