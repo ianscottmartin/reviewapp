@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 function Home() {
     const [signInData, setSignInData]= useState(null);
     const [signUpData, setSignUpData]= useState(null);
@@ -26,11 +27,11 @@ function Home() {
             <header className="navbar">
                 <nav>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/users">Users</a></li>
-                        <li><a href="/artists">Artists</a></li>
-                        <li><a href="/museums">Museums</a></li>
-                        <li><a href="/reviews">Reviews</a></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/users">Users</Link></li>
+                        <li><Link to="/artists">Artists</Link></li>
+                        <li><Link to="/museums">Museums</Link></li>
+                        <li><Link to="/reviews">Reviews</Link></li>
                     </ul>
                 </nav>
             </header>
