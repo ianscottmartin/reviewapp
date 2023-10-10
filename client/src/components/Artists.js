@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 
 
-function Artist() {
+function Artists() {
     // const [artists, setArtists]= useState([]);
 
     // useEffect(()=> {
@@ -24,4 +24,4 @@ function Artist() {
     );
 }
 
-export default Artist;
+export default Artists;
