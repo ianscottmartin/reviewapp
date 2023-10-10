@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import '../css/home/Home.css';
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Link } from "react-router-dom";
+import NavBar from "./NavBar";
 
 
 
@@ -25,17 +24,7 @@ function Home() {
 
     return(
         <div className="home">
-            <header className="navbar">
-                <nav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/users">User</Link></li>
-                        <li><Link to="/artists">Artists</Link></li>
-                        <li><Link to="/museums">Museums</Link></li>
-                        <li><Link to="/reviews">Reviews</Link></li>
-                    </ul>
-                </nav>
-            </header>
+            <NavBar />
             <div className= "home-background">
                 <div className="art-images">
                     <img src="image1.jpg" alt="Artwork 1"/>

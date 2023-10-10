@@ -1,0 +1,9 @@
+.navbar {
+    display: flex;
+
+}
+.navbar a {
+
+    margin-right: 20px;
+
+}
