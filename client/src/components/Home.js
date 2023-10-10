@@ -1,6 +1,5 @@
 import React from "react";
-import './Home.css';
-
+// import './css/home/Home.css';
 
 function Home() {
     return(
@@ -27,4 +26,4 @@ function Home() {
     );
 }
 
-export default HomePage;
+export default Home;
