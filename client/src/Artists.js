@@ -18,7 +18,7 @@ function Artists() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Create an artist object with the form data
+        // Create an artist with the form data
         const newArtist = {
             name: artistName,
         };
@@ -55,7 +55,7 @@ function Artists() {
                 ))}
             </ul>
 
-            {/* ArtistForm component */}
+           
             <div>
                 <h2>Add an Artist</h2>
                 <form onSubmit={handleSubmit}>
