@@ -21,9 +21,11 @@ function Artists() {
         // Create an artist with the form data
         const newArtist = {
             name: artistName,
+            work: artistWork, 
+            description: artistDescription, 
         };
 
-        // Send a POST request to add the artist
+        // Send a POST to add the artist
         fetch("/api/artists", {
             method: "POST",
             headers: {
