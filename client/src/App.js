@@ -1,25 +1,25 @@
 // App.js
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./components/Home";
-import Artists from "./components/Artists";
-import Museums from "./components/Museums";
-import Reviews from "./components/Reviews";
-import Users from "./components/Users";
+import './App.css'
+import Home from "./Home";
+import Artists from "./Artists";
+import Museums from "./Museums";
+import Reviews from "./Reviews";
+import Users from "./Users";
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/artists" component={Artists} />
-          <Route path="/museums" component={Museums} />
-          <Route path="/reviews" component={Reviews} />
-          <Route path="/users" component={Users} />
-        </Switch>
-      </Layout>
+
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/artists" component={Artists} />
+        <Route path="/museums" component={Museums} />
+        <Route path="/reviews" component={Reviews} />
+        <Route path="/users" component={Users} />
+      </Switch>
+
     </Router>
   );
 }

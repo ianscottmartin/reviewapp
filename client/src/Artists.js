@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from "react";
-
+import React, { useState, useEffect } from "react";
+import withNavbar from "./Layout";
 
 function Artists() {
     // const [artists, setArtists]= useState([]);
@@ -17,11 +17,11 @@ function Artists() {
     // }, []);
 
     return (
-        <div> 
+        <div>
             <h2>Artists</h2>
-           
+
         </div>
     );
 }
 
-export default Artists;
+export default withNavbar(Artists);

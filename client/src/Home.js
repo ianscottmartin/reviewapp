@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import '../css/home/Home.css';
+
+
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-import NavBar from "./NavBar";
+import withNavbar from "./Layout";
 
 
 
 
 
 function Home() {
-    const [signInData, setSignInData]= useState(null);
-    const [signUpData, setSignUpData]= useState(null);
+    const [signInData, setSignInData] = useState(null);
+    const [signUpData, setSignUpData] = useState(null);
 
     // callback function
     const handleSignInSubmit = (data) => {
@@ -18,18 +19,18 @@ function Home() {
 
     };
 
-    const handleSignUpSubmit =(data) => {
+    const handleSignUpSubmit = (data) => {
         setSignUpData(data);
     };
 
-    return(
+    return (
         <div className="home">
-            <NavBar />
-            <div className= "home-background">
+
+            <div className="home-background">
                 <div className="art-images">
-                    <img src="image1.jpg" alt="Artwork 1"/>
-                    <img src="image2.jpg" alt="Artwork 2"/>
-                    <img src="image3.jpg" alt="Artwork 3"/>
+                    <img src="image1.jpg" alt="Artwork 1" />
+                    <img src="image2.jpg" alt="Artwork 2" />
+                    <img src="image3.jpg" alt="Artwork 3" />
                 </div>
             </div>
             <div className="auth-section">
@@ -39,9 +40,9 @@ function Home() {
             </div>
             {signInData && <div>Sign-In Data: {JSON.stringify(signInData)}</div>}
             {signUpData && <div>Sign-Up Data: {JSON.stringify(signUpData)}</div>}
-            
+
         </div>
     );
 }
 
-export default Home;
+export default withNavbar(Home);
