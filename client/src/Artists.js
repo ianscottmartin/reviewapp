@@ -16,7 +16,7 @@ function Artists() {
             .catch((error) => console.error("Error fetching artists:", error));
     }, []);
 
-    // Define a function to clear the input fields
+    // Define function to clear the input fields
     const clearInputFields = () => {
         setArtistName("");
         setArtistWork("");
@@ -28,7 +28,7 @@ function Artists() {
         e.preventDefault();
 
         if (selectedArtist) {
-            // Editing an existing artist
+            // Edit an artist
             const updatedArtist = {
                 id: selectedArtist.id,
                 name: artistName,
@@ -36,7 +36,7 @@ function Artists() {
                 description: artistDescription,
             };
 
-            // Send a PUT request to update the artist
+            // Send a PUT (edit) request to update the artist
             fetch(`/api/artists/${selectedArtist.id}`, {
                 method: "PUT",
                 headers: {
@@ -60,7 +60,7 @@ function Artists() {
                 })
                 .catch((error) => console.error("Error updating artist:", error));
         } else {
-            // Creating a new artist
+            // Create a new artist
             const newArtist = {
                 name: artistName,
                 work: artistWork,
@@ -92,7 +92,7 @@ function Artists() {
         }
     };
 
-    // Define a function to handle editing an artist
+    // Function to edit an artist
     const handleEdit = (artist) => {
         setSelectedArtist(artist);
         setArtistName(artist.name);
@@ -100,7 +100,7 @@ function Artists() {
         setArtistDescription(artist.description);
     };
 
-    //Function delete an artist
+    // Function to delete an artist
     const handleDelete = (artistId) => {
         if (window.confirm("Are you sure you want to delete this artist?")) {
             fetch(`/api/artists/${artistId}`, {
@@ -126,17 +126,6 @@ function Artists() {
     return (
         <div>
             <h2>Artists</h2>
-            {/* List of artists */}
-            <ul>
-                {artists.map((artist) => (
-                    <li key={artist.id}>
-                        {artist.name}
-                        <button onClick={() => handleEdit(artist)}>Edit</button>
-                        <button onClick={() => handleDelete(artist.id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
-
             <div>
                 <h2>{selectedArtist ? "Edit Artist" : "Add an Artist"}</h2>
                 <form onSubmit={handleSubmit}>
@@ -169,6 +158,24 @@ function Artists() {
                     </button>
                 </form>
             </div>
+            {/* List of artists */}
+            <ul>
+                {artists.map((artist) => (
+                    <li key={artist.id}>
+                        <div>
+                            <strong>Artist Name:</strong> {artist.name}
+                        </div>
+                        <div>
+                            <strong>Work:</strong> {artist.work}
+                        </div>
+                        <div>
+                            <strong>Description:</strong> {artist.description}
+                        </div>
+                        <button onClick={() => handleEdit(artist)}>Edit</button>
+                        <button onClick={() => handleDelete(artist.id)}>Delete</button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
