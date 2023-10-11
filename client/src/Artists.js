@@ -6,6 +6,8 @@ import withNavbar from "./Layout";
 function Artists() {
     const [artists, setArtists] = useState([]);
     const [artistName, setArtistName] = useState("");
+    const [artistWork, setArtistWork] = useState(""); 
+    const [artistDescription, setArtistDescription] = useState(""); 
 
     useEffect(() => {
         // Fetch the list of artists when the component mounts
@@ -18,7 +20,7 @@ function Artists() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Create an artist with the form data
+        // Create an artist with the data
         const newArtist = {
             name: artistName,
             work: artistWork, 
@@ -69,6 +71,26 @@ function Artists() {
                             onChange={(e) => setArtistName(e.target.value)}
                         />
                     </label>
+                    <label>
+                        Artist Work: {/* Input for artist's work */}
+                        <input
+                            type="text"
+                            value={artistWork}
+                            onChange={(e) => setArtistWork(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        Artist Description: {/* Input for artist's description */}
+                        <input
+                            type="text"
+                            value={artistDescription}
+                            onChange={(e) => setArtistDescription(e.target.value)}
+                        />
+                    </label>
+
+
+
+
                     <button type="submit">Add Artist</button>
                 </form>
             </div>
