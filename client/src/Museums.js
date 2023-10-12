@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import withNavbar from "./Layout";
+import "./css/museum/Museum.css";
 
 function Museums() {
     const [museums, setMuseums] = useState([]);
