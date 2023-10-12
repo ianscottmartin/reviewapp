@@ -21,7 +21,11 @@ function Home() {
     return (
         <div className="home">
             <div className="home-background">
-                
+                <div className="art-images">
+                    <img src="image1.jpg" alt="Artwork 1" />
+                    <img src="image2.jpg" alt="Artwork 2" />
+                    <img src="image3.jpg" alt="Artwork 3" />
+                </div>
             </div>
             <div className="auth-section">
                 <SignInForm onSubmit={handleSignInSubmit} />
