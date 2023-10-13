@@ -1,0 +1,43 @@
+/* Artists.css */
+
+.art_container {
+    background-color: #c28c10; /* Change the background color to your desired color */
+    padding: 20px; /* Add padding to create space between the content and the container edge */
+    border-radius: 10px; /* Add rounded corners for the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow to make the container stand out */
+  }
+  
+  /* Style the h2 headings */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style the form input fields and labels */
+  form label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #12ad29;
+    border-radius: 5px;
+  }
+  
+  /* Style the buttons */
+  button {
+    background-color: #007bff; /* Change the button background color to your desired color */
+    color: #fff; /* Text color for the button */
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #b3008c; /* Change the button background color on hover */
+  }
+  

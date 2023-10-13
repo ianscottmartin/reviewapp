@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import withNavbar from "./Layout";
-
+import ".//css/artist/Artists.css"
 function Artists() {
     const [artists, setArtists] = useState([]);
     const [artistName, setArtistName] = useState("");
@@ -124,58 +124,60 @@ function Artists() {
     };
 
     return (
-        <div>
-            <h2>Artists</h2>
+        <div className="art_container">
             <div>
-                <h2>{selectedArtist ? "Edit Artist" : "Add an Artist"}</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Artist Name:
-                        <input
+             <h2>Artists</h2>
+                <div>
+                 <h2>{selectedArtist ? "Edit Artist" : "Add an Artist"}</h2>
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                         Artist Name:
+                         <input
                             type="text"
                             value={artistName}
                             onChange={(e) => setArtistName(e.target.value)}
                         />
-                    </label>
-                    <label>
-                        Artist Work:
-                        <input
-                            type="text"
-                            value={artistWork}
-                            onChange={(e) => setArtistWork(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        Artist Description:
-                        <input
-                            type="text"
-                            value={artistDescription}
-                            onChange={(e) => setArtistDescription(e.target.value)}
-                        />
-                    </label>
-                    <button type="submit">
+                        </label>
+                        <label>
+                         Artist Work:
+                            <input
+                                type="text"
+                                value={artistWork}
+                                onChange={(e) => setArtistWork(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Artist Description:
+                            <input
+                                type="text"
+                                value={artistDescription}
+                                onChange={(e) => setArtistDescription(e.target.value)}
+                            />
+                        </label>
+                        <button type="submit">
                         {selectedArtist ? "Update Artist" : "Add Artist"}
-                    </button>
-                </form>
+                        </button>
+                    </form>
+                </div>
+                {/* List of artists */}
+                <ul>
+                    {artists.map((artist) => (
+                        <li key={artist.id}>
+                            <div>
+                                <strong>Artist Name:</strong> {artist.name}
+                            </div>
+                            <div>
+                                <strong>Work:</strong> {artist.work}
+                            </div>
+                            <div>
+                             <strong>Description:</strong> {artist.description}
+                            </div>
+                            <button onClick={() => handleEdit(artist)}>Edit</button>
+                            <button onClick={() => handleDelete(artist.id)}>Delete</button>
+                        </li>
+                    ))}
+                </ul>
             </div>
-            {/* List of artists */}
-            <ul>
-                {artists.map((artist) => (
-                    <li key={artist.id}>
-                        <div>
-                            <strong>Artist Name:</strong> {artist.name}
-                        </div>
-                        <div>
-                            <strong>Work:</strong> {artist.work}
-                        </div>
-                        <div>
-                            <strong>Description:</strong> {artist.description}
-                        </div>
-                        <button onClick={() => handleEdit(artist)}>Edit</button>
-                        <button onClick={() => handleDelete(artist.id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
         </div>
     );
 }
