@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import withNavbar from "./Layout";
 import "./css/review/Reviews.css";
- 
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
@@ -59,7 +58,7 @@ function Reviews() {
             <h2>Reviews</h2>
             <ul>
                 {reviews.map((review) => (
-                    <li key={review.id}>{review.text}</li>
+                    <li key={review.id}>{review.content}</li>
                 ))}
             </ul>
         </div>
