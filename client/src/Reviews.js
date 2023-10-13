@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import withNavbar from "./Layout";
+import "./css/review/Reviews.css";
+ 
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
@@ -28,7 +30,7 @@ function Reviews() {
 
     if (isLoading) {
         return (
-            <div>
+            <div className="reviews_container">
                 <h2>Loading...</h2>
             </div>
         );
@@ -36,7 +38,7 @@ function Reviews() {
 
     if (error) {
         return (
-            <div>
+            <div className="reviews_container">
                 <h2>Reviews</h2>
                 <p>An error occurred while fetching data: {error.message}</p>
             </div>
@@ -45,7 +47,7 @@ function Reviews() {
 
     if (reviews.length === 0) {
         return (
-            <div>
+            <div className="reviews_container">
                 <h2>Reviews</h2>
                 <p>No reviews available.</p>
             </div>
@@ -53,7 +55,7 @@ function Reviews() {
     }
 
     return (
-        <div>
+        <div className="reviews_container">
             <h2>Reviews</h2>
             <ul>
                 {reviews.map((review) => (
