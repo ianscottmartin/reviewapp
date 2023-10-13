@@ -1,3 +1,25 @@
-.museum-background {
-    background-color: brown;
-}
+
+
+.museum_container {
+    background-color: #d28c31; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  }
+  
+ 
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+ 
+  ul {
+    list-style-type: none; 
+    padding: 0;
+  }
+  
+  li {
+    margin: 5px 0;
+  }
+  

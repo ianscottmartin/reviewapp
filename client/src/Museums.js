@@ -26,7 +26,7 @@ function Museums() {
 
     if (error) {
         return (
-            <div>
+            <div className="museum_container">
                 <h2>Museums</h2>
                 <p>An error occurred while fetching data: {error.message}</p>
             </div>
@@ -34,7 +34,7 @@ function Museums() {
     }
 
     return (
-        <div>
+        <div className="museum_container">
             <h2>Museums</h2>
             <ul>
                 {museums.map((museum) => (

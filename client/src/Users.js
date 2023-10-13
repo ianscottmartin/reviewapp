@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import withNavbar from "./Layout";
+import "./css/user/User.css";
 
 function Users() {
     const [users, setUsers] = useState([]);
@@ -26,7 +27,7 @@ function Users() {
     // If there's an error, display an error message
     if (error) {
         return (
-            <div>
+            <div className="users_container">
                 <h2>Users</h2>
                 <p>An error occurred while fetching data: {error.message}</p>
             </div>
@@ -34,7 +35,7 @@ function Users() {
     }
 
     return (
-        <div>
+        <div className="users_container">
             <h2>Users</h2>
             <ul>
                 {users.map((user) => (
