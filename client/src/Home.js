@@ -10,7 +10,7 @@ function Home() {
     const [signInData, setSignInData] = useState(null);
     const [signUpData, setSignUpData] = useState(null);
 
-    // Callback function
+    
     const handleSignInSubmit = (data) => {
         setSignInData(data);
     };
