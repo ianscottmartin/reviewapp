@@ -1,13 +1,11 @@
-# app.py
 from flask import request, session, jsonify
 from flask_restful import Resource, reqparse
-
-from config import app, db, api , bcrypt # This line will run the config.py file and initialize our app
+from config import app, db, api, bcrypt
 from models import User, Review, Artist, Museum, user_review_association
 
 @app.route("/", methods=["GET"])
 def root():
-	return "<h1>The Reflex!</h1>"
+    return "<h1>The Reflex!</h1>"
 
 # RESTful route syntax
 # class Users(Resource):
@@ -105,8 +103,6 @@ class ReviewResource(Resource):
             db.session.rollback()
             return {"message": f"Failed to create review: {str(e)}"}, 500
 
-
-
     def delete(self, review_id):
         review = Review.query.get(review_id)
 
@@ -144,13 +140,29 @@ class ReviewResource(Resource):
             db.session.rollback()
             return {"message": f"Failed to update review{str(e)}"}, 500  
           
- # routes for artists
-
+# routes for artists
 class ArtistResource(Resource):
     def get(self):
         artists = Artist.query.all()
-        artist_list = [{"id": artist.id, "name": artist.name} for artist in artists]
+        artist_list = [{"id": artist.id, "name": artist.name, "work": artist.work, "description": artist.description} for artist in artists]
         return (artist_list), 200
+
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("name", type=str, required=True)
+        parser.add_argument("work", type=str, required=True)
+        parser.add_argument("description", type=str, required=True)
+        args = parser.parse_args()
+
+        artist = Artist(name=args["name"], work=args["work"], description=args["description"])
+
+        try:
+            db.session.add(artist)
+            db.session.commit()
+            return {"message": "Artist created successfully"}, 201
+        except Exception as e:
+            db.session.rollback()
+            return {"message": f"Failed to create artist: {str(e)}"}, 500
 
 class MuseumResource(Resource):
     def get(self):
@@ -168,17 +180,13 @@ class UserReviewResource(Resource):
         reviews = user.reviews
         review_list = [{"id": review.id, "content": review.content} for review in reviews]
         return (review_list), 200
-    
-    #add routes to the API
 
+# add routes to the API
 api.add_resource(UserResource, '/api/users')
-api.add_resource(ReviewResource, '/api/reviews') 
-api.add_resource(ArtistResource, '/api/artists')
+api.add_resource(ReviewResource, '/api/reviews')
+api.add_resource(ArtistResource, '/api/artists')  # New route for artists
 api.add_resource(MuseumResource, '/api/museums')
 api.add_resource(UserReviewResource, '/api/user_reviews/<int:user_id>')
-
-
-
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

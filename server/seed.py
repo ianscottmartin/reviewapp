@@ -69,27 +69,5 @@ with app.app_context():
     except Exception as e:
             db.session.rollback()
             print(f'Database seed failed with error: {str(e)}')
-    #     else:
-    #         print('Artists not found in the database')
-    # else:
-    #     print('User not found in the database')
-
-    # user1 = User.query.filter_by(username='user1').first()
-    # user2 = User.query.filter_by(username= 'user2').first()
-    # review1 = Review.query.filter_by(id=1).first()
-    # review2 =Review.query.filter_by(id=2).first()
-
-    # user1.reviews.append(review1)
-    # user2.reviews.append(review2)
-
-
-    # try:
-
-    #     db.session.commit()
-    #     print('Database seed successful')
-    # except Exception as e:
-
-    #     db.session.rollback()
-    #     print(f'Database seed failed with error: {str(e)}')
-
+   
 
