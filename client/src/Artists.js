@@ -9,21 +9,21 @@ function Artists() {
     const [selectedArtist, setSelectedArtist] = useState(null);
 
     useEffect(() => {
-        // Fetch the list of artists when the component mounts
+        
         fetch("/api/artists")
             .then((response) => response.json())
             .then((data) => setArtists(data))
             .catch((error) => console.error("Error fetching artists:", error));
     }, []);
 
-    // Define function to clear the input fields
+    
     const clearInputFields = () => {
         setArtistName("");
         setArtistWork("");
         setArtistDescription("");
     };
 
-    // Define a function to handle form submission
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -36,7 +36,7 @@ function Artists() {
                 description: artistDescription,
             };
 
-            // Send a PUT (edit) request to update the artist
+            
             fetch(`/api/artists/${selectedArtist.id}`, {
                 method: "PUT",
                 headers: {
@@ -48,11 +48,11 @@ function Artists() {
                 .then((data) => {
                     console.log("Artist updated:", data);
 
-                    // Reset form fields and selected artist
+                    
                     setSelectedArtist(null);
                     clearInputFields();
 
-                    // Fetch the updated list of artists and update the state
+                    
                     fetch("/api/artists")
                         .then((response) => response.json())
                         .then((data) => setArtists(data))
@@ -60,14 +60,14 @@ function Artists() {
                 })
                 .catch((error) => console.error("Error updating artist:", error));
         } else {
-            // Create a new artist
+            
             const newArtist = {
                 name: artistName,
                 work: artistWork,
                 description: artistDescription,
             };
 
-            // Send a POST request to add the artist
+            
             fetch("/api/artists", {
                 method: "POST",
                 headers: {
@@ -79,10 +79,10 @@ function Artists() {
                 .then((data) => {
                     console.log("Artist added:", data);
 
-                    // Reset form fields
+                    
                     clearInputFields();
 
-                    // Fetch the updated list of artists and update the state
+                    
                     fetch("/api/artists")
                         .then((response) => response.json())
                         .then((data) => setArtists(data))
@@ -92,7 +92,7 @@ function Artists() {
         }
     };
 
-    // Function to edit an artist
+    
     const handleEdit = (artist) => {
         setSelectedArtist(artist);
         setArtistName(artist.name);
@@ -100,7 +100,7 @@ function Artists() {
         setArtistDescription(artist.description);
     };
 
-    // Function to delete an artist
+    
     const handleDelete = (artistId) => {
         if (window.confirm("Are you sure you want to delete this artist?")) {
             fetch(`/api/artists/${artistId}`, {
@@ -108,7 +108,7 @@ function Artists() {
             })
                 .then((response) => {
                     if (response.status === 200) {
-                        // Artist deleted successfully, update the list
+                        
                         fetch("/api/artists")
                             .then((response) => response.json())
                             .then((data) => setArtists(data))
