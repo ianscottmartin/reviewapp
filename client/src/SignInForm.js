@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function SignInForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isSignInSuccess, setIsSignInSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleSignIn = (e) => {
@@ -14,8 +15,9 @@ function SignInForm() {
             return;
         }
 
-        // Submit the form to the server
-        // You may use a library like Axios to send a POST request to your backend for authentication
+        // Simulate a successful sign-in (you should replace this with a server API call)
+        // If the sign-in is successful, set isSignInSuccess to true
+        setIsSignInSuccess(true);
 
         // Clear error message
         setErrorMessage("");
@@ -33,27 +35,35 @@ function SignInForm() {
     };
 
     return (
-        <form onSubmit={handleSignIn}>
-            <h2>Sign In</h2>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <label>Email:
-                <input
-                    type="email"
-                    placeholder="Enter email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </label>
-            <label>Password:
-                <input
-                    type="password"
-                    placeholder="Enter password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </label>
-            <button type="submit">Sign In</button>
-        </form>
+        <div>
+            {isSignInSuccess ? (
+                <div className="success-message">
+                    Sign-in was successful! You are now logged in.
+                </div>
+            ) : (
+                <form onSubmit={handleSignIn}>
+                    <h2>Sign In</h2>
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    <label>Email:
+                        <input
+                            type="email"
+                            placeholder="Enter email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </label>
+                    <label>Password:
+                        <input
+                            type="password"
+                            placeholder="Enter password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </label>
+                    <button type="submit">Sign In</button>
+                </form>
+            )}
+        </div>
     );
 }
 
