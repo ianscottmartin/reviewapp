@@ -187,16 +187,15 @@ def login():
     user = User.query.filter_by(username=username).first()
 
     if user and bcrypt.check_password_hash(user.password_hash, password):
-       
         session["user_id"] = user.id
         return jsonify({"message": "Login successful"}), 200
     else:
-        return jsonify({"message": "Invalid credentials"}), 401
+        return jsonify({"message": "Invalid credentials"}, 401)
 
 @app.route("/logout", methods=["GET"])
 def logout():
-    session.pop("user_id", None)  
-    return redirect(url_for("root")) 
+    session.pop("user_id", None)
+    return redirect(url_for("root"))
 
 # Add routes to the API
 api.add_resource(UserResource, '/api/users')
