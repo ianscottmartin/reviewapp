@@ -1,4 +1,4 @@
-from flask import request, session, jsonify
+from flask import request, session, jsonify, redirect, url_for
 from flask_restful import Resource, reqparse
 from config import app, db, api, bcrypt
 from models import User, Review, Artist, Museum, user_review_association
@@ -9,9 +9,9 @@ def root():
 
 # RESTful route syntax
 # class Users(Resource):
-# 	def get(self):
-# 		users = [user.to_dict() for user in User.query.all()] # Serialize your users - the password hashes should not be sent to the client
-# 		return users, 200
+#     def get(self):
+#         users = [user.to_dict() for user in User.query.all()] # Serialize your users - the password hashes should not be sent to the client
+#         return users, 200
 # api.add_resource(Users, '/users')
 
 # All routes here!
@@ -39,14 +39,13 @@ class UserResource(Resource):
         except Exception as e:
             db.session.rollback()
             return {"message": f"failed to create user: {str(e)}"}, 500
-        
 
     def delete(self, user_id):
         user = User.query.get(user_id)
 
         if user is None:
             return {"message": "User not found"}, 404
-        
+
         try:
             db.session.delete(user)
             db.session.commit()
@@ -54,14 +53,12 @@ class UserResource(Resource):
         except Exception as e:
             db.session.rollback()
             return {"message": f"Failed to delete user: {str(e)}"}, 500
-        
 
     def put(self, user_id):
         user = User.query.get(user_id)
 
         if user is None:
             return {"message": "User not found"}, 404
-
 
         parser = reqparse.RequestParser()
         parser.add_argument("username", type=str)
@@ -75,12 +72,12 @@ class UserResource(Resource):
 
         try:
             db.session.commit()
-            return{"message": "User updated"}, 200
+            return {"message": "User updated"}, 200
         except Exception as e:
             db.session.rollback()
-            return {"message": "Failed to update: {str(e)}"}, 500
-                    
-#routes for reviews   
+            return {"message": f"Failed to update: {str(e)}"}, 500
+
+# Routes for reviews   
 class ReviewResource(Resource):
     def get(self):
         reviews = Review.query.all()
@@ -98,7 +95,7 @@ class ReviewResource(Resource):
         try:
             db.session.add(review)
             db.session.commit()
-            return {"message": "Review create"}, 201
+            return {"message": "Review created"}, 201
         except Exception as e:
             db.session.rollback()
             return {"message": f"Failed to create review: {str(e)}"}, 500
@@ -108,7 +105,7 @@ class ReviewResource(Resource):
 
         if review is None:
             return {"message": "Review not found"}, 404
-        
+
         try:
             db.session.delete(review)
             db.session.commit()
@@ -116,7 +113,7 @@ class ReviewResource(Resource):
         except Exception as e:
             db.session.rollback()
             return {"message": f"Failed to delete review: {str(e)}"}, 500
-        
+
     def put(self, review_id):
         review = Review.query.get(review_id)
 
@@ -126,7 +123,7 @@ class ReviewResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("content", type=str)
         parser.add_argument("artist_id", type=str)
-        args = parser.parse_args()  
+        args = parser.parse_args()
 
         if args["content"]:
             review.content = args["content"]
@@ -138,9 +135,9 @@ class ReviewResource(Resource):
             return {"message": "Review updated"}, 200
         except Exception as e:
             db.session.rollback()
-            return {"message": f"Failed to update review{str(e)}"}, 500  
-          
-# routes for artists
+            return {"message": f"Failed to update review{str(e)}"}, 500
+
+# Routes for artists
 class ArtistResource(Resource):
     def get(self):
         artists = Artist.query.all()
@@ -168,7 +165,7 @@ class MuseumResource(Resource):
     def get(self):
         museums = Museum.query.all()
         museum_list = [{"id": museum.id, "name": museum.name} for museum in museums]
-        return (museum_list), 200 
+        return (museum_list), 200
 
 class UserReviewResource(Resource):
     def get(self, user_id):
@@ -176,15 +173,35 @@ class UserReviewResource(Resource):
 
         if user is None:
             return ({"message": "user not found"}), 404
-        
+
         reviews = user.reviews
         review_list = [{"id": review.id, "content": review.content} for review in reviews]
         return (review_list), 200
 
-# add routes to the API
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.get_json()
+    username = data.get("username")
+    password = data.get("password")
+
+    user = User.query.filter_by(username=username).first()
+
+    if user and bcrypt.check_password_hash(user.password_hash, password):
+       
+        session["user_id"] = user.id
+        return jsonify({"message": "Login successful"}), 200
+    else:
+        return jsonify({"message": "Invalid credentials"}), 401
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.pop("user_id", None)  
+    return redirect(url_for("root")) 
+
+# Add routes to the API
 api.add_resource(UserResource, '/api/users')
 api.add_resource(ReviewResource, '/api/reviews')
-api.add_resource(ArtistResource, '/api/artists')  # New route for artists
+api.add_resource(ArtistResource, '/api/artists')
 api.add_resource(MuseumResource, '/api/museums')
 api.add_resource(UserReviewResource, '/api/user_reviews/<int:user_id>')
 
