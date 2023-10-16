@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import withNavbar from "./Layout";
+import "../src/css/review/Reviews.css";
 
 function Reviews() {
   const [newReview, setNewReview] = useState("");
   const [selectedArtistId, setSelectedArtistId] = useState("");
-  const [artists, setArtists] = useState([]); // State to store the list of artists
+  const [artists, setArtists] = useState([]); 
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -86,4 +88,4 @@ function Reviews() {
   );
 }
 
-export default Reviews;
+export default withNavbar (Reviews);
