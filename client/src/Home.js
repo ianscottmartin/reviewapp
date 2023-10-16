@@ -23,7 +23,7 @@ function Home() {
       </div>
 
       <div className="welcome-paragraph">
-        <h2>Welcome to Our Art Gallery</h2>
+        <h2>Welcome to The Art Gallery</h2>
         <p>
           Thank you for visiting our art gallery website. We showcase a diverse
           collection of artworks from talented artists around the world. Explore
