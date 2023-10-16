@@ -6,12 +6,12 @@ function ArtistForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Create an artist object with the form data
+        
         const newArtist = {
             name: artistName,
         };
 
-        // Send a POST request to the server to add the artist
+        
         fetch("/api/artists", {
             method: "POST",
             headers: {
@@ -22,7 +22,7 @@ function ArtistForm() {
             .then((response) => response.json())
             .then((data) => {
                 console.log("Artist added:", data);
-                // You can update the UI or show a success message here
+                
             })
             .catch((error) => console.error("Error adding artist:", error));
     };
